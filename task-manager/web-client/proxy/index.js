@@ -7,7 +7,7 @@ const socket = new net.Socket();
 let connected = false;
 
 socket.connect(5000, "127.0.0.1", () => {
-    socket.write("message from nodejs\n")
+    // socket.write("message from nodejs\n")
     connected = true;
 })
 

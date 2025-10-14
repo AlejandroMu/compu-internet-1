@@ -40,7 +40,7 @@ const ListTask = (list) => {
     const taskContainer = document.createElement("div");
     taskContainer.className = "task-items";
     container.appendChild(taskContainer);
-    list.tasks.forEach(task => {
+    list.tasks?.forEach(task => {
         const taskElement = createTaskElement(task);
         taskContainer.appendChild(taskElement);
     });

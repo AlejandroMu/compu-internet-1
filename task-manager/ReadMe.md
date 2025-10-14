@@ -156,3 +156,27 @@ Abrir el archivo **index.html** con el Servidor web instalado. Si usa **Live Pre
 > 1. El servidor TCP debe exponer el puerto **5000** por la interface de red **localhost**
 > 2. Este taller está diseñado para fortalecer habilidades en programación de redes, manejo de JSON y aplicación de patrones de diseño como DAO.  
 > 3. Se recomienda seguir buenas prácticas de organización de código y documentación para facilitar la comprensión y mantenimiento del proyecto.
+
+
+## Estado inicial.
+
+La aplicación debe contar con tres TaskStage por defecto:
+
+```java
+
+  TaskStage s = new TaskStage();
+  s.setId(1);
+  s.setName("TO DO");
+  s.setDescription("Desc");
+
+  TaskStage s1 = new TaskStage();
+  s1.setId(2);
+  s1.setName("Doing");
+  s1.setDescription("Desc");
+
+  TaskStage s2 = new TaskStage();
+  s2.setId(3);
+  s2.setName("Done");
+  s2.setDescription("Desc");
+  
+```
