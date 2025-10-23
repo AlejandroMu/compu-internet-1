@@ -1,0 +1,27 @@
+#app{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 50px;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+/* 
+.board{
+    background-color: black;
+} */
+
+.cell{
+    width: 100px;
+    height: 100px;
+    background-color: blanchedalmond;
+    border-width: 10px;
+    border: solid;
+    border-color: black;
+}
