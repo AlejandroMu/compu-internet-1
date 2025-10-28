@@ -1,6 +1,8 @@
 package co.icesi.buscaminas;
 
+import co.icesi.buscaminas.controllers.TCPController;
 import co.icesi.buscaminas.model.BoardGame;
+import co.icesi.buscaminas.services.ServicesImpl;
 
 import java.util.Scanner;
 
@@ -8,8 +10,9 @@ public class Main {
 
     public static void main(String[] args)
     {
-
-        apply(8,8);
+        TCPController controller = new TCPController(new ServicesImpl());
+        controller.startService();
+        // apply(8,8);
     }
     public static void apply(int n, int m) {
 

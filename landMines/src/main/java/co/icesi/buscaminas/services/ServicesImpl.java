@@ -1,4 +1,4 @@
-package co.icesi.buscaminas;
+package co.icesi.buscaminas.services;
 import com.zeroc.Ice.Current;
 
 import co.icesi.buscaminas.model.BoardGame;

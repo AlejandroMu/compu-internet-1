@@ -17,6 +17,7 @@ repositories {
 }
 dependencies {
     implementation 'com.zeroc:ice:3.7.2'
+    implementation 'com.google.code.gson:gson:2.10.1'
 }
 jar {
     manifest {
