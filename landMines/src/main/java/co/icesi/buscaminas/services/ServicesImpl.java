@@ -10,6 +10,10 @@ public class ServicesImpl{
         game = new BoardGame();
         game.initGame(8, 8, 10);
     }
+
+    public BoardGame getGame() {
+        return game;
+    }
     public int initGame(int n, int m, int mines, Current current) {
         return game.initGame(n, m, mines);
     }

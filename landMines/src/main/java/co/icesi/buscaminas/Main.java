@@ -10,22 +10,23 @@ public class Main {
 
     public static void main(String[] args)
     {
-        TCPController controller = new TCPController(new ServicesImpl());
+        ServicesImpl serv = new ServicesImpl();
+        new Thread(() -> apply(serv.getGame())).start();
+        TCPController controller = new TCPController(serv);
         controller.startService();
-        // apply(8,8);
     }
-    public static void apply(int n, int m) {
+    public static void apply(BoardGame bg) {
 
-        BoardGame bg = new BoardGame();
-        int mines = bg.initGame(8,8,10);
-        System.out.println("LandMines on the table: "+mines);
+        int n = bg.getBoard().length;
+        int m = bg.getBoard()[0].length;
+        System.out.println("LandMines on the table: "+ bg.getMines());
 //        bg.showAll(true);
 //        bg.printBoard();
 //        bg.showAll(false);
         bg.printBoard();
         Scanner scanner = new Scanner(System.in);
         System.out.println("select a cell (i,j) between 0 and "+(n-1)+","+(m-1)+" to play, or (-1,-1) to exit");
-        System.out.println("you have "+mines+" mines to avoid");
+        System.out.println("you have "+bg.getMines()+" mines to avoid");
         System.out.println("use the format: <operation> <i> <j>");
         System.out.println("operation 1: select cell, operation 2: mark/unmark cell");
         int operation = scanner.nextInt();
@@ -35,7 +36,7 @@ public class Main {
             try {
                 if(operation==2){
                     bg.markCell(i,j);
-                }else{
+                }else if(operation ==1){
                     boolean r = bg.selectCell(i, j);
                     if (r) {
                         System.out.println("you win, Congratulations");
