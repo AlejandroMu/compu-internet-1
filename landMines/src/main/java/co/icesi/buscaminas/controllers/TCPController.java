@@ -98,27 +98,27 @@ public class TCPController {
                         int i = Integer.parseInt(data.get("i"));
                         int j = Integer.parseInt(data.get("j"));
                         try {
-                            boolean resp = services.selectCell(i, j, null);
+                            boolean resp = services.selectCell(i, j);
                             response.status = "OK";
                             response.data.put("win", resp);
 
-                            response.data.put("gameEnd", false);
+                            response.data.put("gameEnd", resp);
                         } catch (Exception e) {
                             response.data.put("gameEnd", true);
                             response.data.put("win", false);
 
                         }
-                        Cell[][] board = services.printBoard(null);
+                        Cell[][] board = services.printBoard();
                         response.data.put("board", board);
                         break;
                     case "SOW_ALL":
-                        services.showAll(true, null);
-                        board = services.printBoard(null);
+                        services.showAll(true);
+                        board = services.printBoard();
                         response.status = "OK";
                         response.data.put("board", board);
                         break;
                     case "GET_BOARD":
-                        board = services.printBoard(null);
+                        board = services.printBoard();
                         response.status = "OK";
                         response.data.put("board", board);
                         break;
@@ -126,8 +126,8 @@ public class TCPController {
                         i = Integer.parseInt(data.get("n"));
                         j = Integer.parseInt(data.get("m"));
                         int m = Integer.parseInt(data.get("minas"));
-                        services.initGame(i, j, m, null);
-                        board = services.printBoard(null);
+                        services.initGame(i, j, m);
+                        board = services.printBoard();
                         response.status = "OK";
                         response.data.put("board", board);
                         break;

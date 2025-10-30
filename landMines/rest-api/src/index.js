@@ -1,15 +1,16 @@
 const express = require('express');
-const {selectCell} = require("./services/delegateService")
+const cors = require('cors')
+const {selectCell, getBoard} = require("./services/delegateService")
 
 const app = express()
 app.use(express.json());
+app.use(cors())
 
+app.get("/board",async (req, resp)=>{
 
-app.get("/board",(req, resp)=>{
-    const jsonRes = {
-        "message":"HW"
-    }
-    resp.json(jsonRes)
+    const res = await getBoard()
+
+    resp.status(200).json(res)
 })
 
 app.put("/board", async (req, resp)=>{

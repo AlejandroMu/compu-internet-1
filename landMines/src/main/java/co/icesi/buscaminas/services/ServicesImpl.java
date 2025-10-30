@@ -1,5 +1,4 @@
 package co.icesi.buscaminas.services;
-import com.zeroc.Ice.Current;
 
 import co.icesi.buscaminas.model.BoardGame;
 import co.icesi.buscaminas.model.Cell;
@@ -14,21 +13,21 @@ public class ServicesImpl{
     public BoardGame getGame() {
         return game;
     }
-    public int initGame(int n, int m, int mines, Current current) {
+    public int initGame(int n, int m, int mines) {
         return game.initGame(n, m, mines);
     }
     
-    public boolean selectCell(int i, int j, Current current) {
+    public boolean selectCell(int i, int j) {
         
         return game.selectCell(i, j);
     }
 
-    public void showAll(boolean show, Current current) {
+    public void showAll(boolean show) {
         
         game.showAll(show);
     }
 
-    public Cell[][] printBoard(Current current) {
+    public Cell[][] printBoard() {
         game.printBoard();
         Cell [][] cells = game.getBoard();
 

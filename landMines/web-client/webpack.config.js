@@ -8,11 +8,13 @@ const __dirname = path.dirname(__filename);
 
 export default {
   mode: 'development',
-  entry: './index.js',
+  entry: {
+    main: ['./index.js', './index.css']
+  },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
+    publicPath: '',
   },
   module: {
     rules: [
@@ -34,21 +36,22 @@ export default {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      // Leemos el index.html original y reemplazamos la referencia a index.js
-      // por la ruta del bundle que genera webpack. El archivo original
-      // en la carpeta del proyecto queda intacto.
-      templateContent: ({ htmlWebpackPlugin }) => {
-        const raw = fs.readFileSync(
-          path.resolve(__dirname, 'index.html'),
-          'utf8'
-        );
-        return raw.replace(
-          /<script\s+src="index\.js"(\s+type="module")?\s*><\/script>/i,
-          '<script src="<%= htmlWebpackPlugin.files.js[0] %>"></script>'
-        );
+      templateContent: () => {
+        // Leer el HTML original
+        const raw = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf8');
+        // Reemplazar la etiqueta script y actualizar la ruta del CSS
+        return raw
+          .replace(
+            /<script\s+src=["']index\.js["'][^>]*><\/script>/i,
+            '<script src="bundle.js"></script>'
+          )
+          .replace(
+            /<link\s+rel=["']stylesheet["']\s+href=["']index\.css["'][^>]*>/i,
+            '' // Removemos el link al CSS ya que webpack lo incluirá en el bundle
+          );
       },
-      inject: false,
-    }),
+      inject: false
+    })
   ],
   devServer: {
     static: {

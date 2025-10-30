@@ -1,12 +1,13 @@
 const Cell = (cell) => {
-    const {id, value, isMine, hide, onClick, ...props} = cell
+    const {id, value, isLandMine, hide, onClick,showAll, ...props} = cell
 
 
 
     const cellContainer = document.createElement("div")
     cellContainer.className = "cell"
-
-    cellContainer.classList.add(hide ? "hide":isMine ? "isMine":"blank")
+    const show = !hide || showAll
+    cellContainer.classList.add(!show ? "hide":isLandMine ? "isMine":"blank")
+    cellContainer.innerText = show ? (isLandMine ? "*" : value == 0 ? "" : value) : ""
 
     cellContainer.addEventListener("click", (e) => {
         e.preventDefault()

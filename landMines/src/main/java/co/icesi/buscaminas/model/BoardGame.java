@@ -84,6 +84,7 @@ public class BoardGame {
         }
         Cell cell = board[i][j];
         if(cell.isLandMine()){
+            showAll(true);
             throw new RuntimeException("Game over");
         }else {
             if (cell.isHide()) {
