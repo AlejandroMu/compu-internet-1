@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors')
-const {selectCell, getBoard} = require("./services/delegateService")
+const {selectCell, getBoard, restartGame} = require("./services/delegateService")
 
 const app = express()
 app.use(express.json());
@@ -23,6 +23,15 @@ app.put("/board", async (req, resp)=>{
 
 })
 
+app.post("/restart", async (req, resp)=>{
+    const body = req.body
+    console.log(body)
+
+    const res = await restartGame(body["n"], body["m"], body["minas"])
+
+    resp.status(200).json(res)
+
+})
 app.listen(5000, () =>{
     console.log("Server Intit")
 })

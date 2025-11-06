@@ -11,6 +11,16 @@ const getBoard = async () => {
   return data.json();
 };
 
+const restartGame = async () => {
+  let data = await fetch('http://localhost:5000/restart', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return data.json();
+};
+
 const showCell = async (cellId) => {
   const id = cellId.split('-');
   const i = parseInt(id[0]);
@@ -54,6 +64,23 @@ function Game() {
   title.innerText = 'Land Mines';
   title.classList = 'title';
   container.appendChild(title);
+
+  const restartButton = document.createElement('button');
+  restartButton.innerText = 'Reiniciar';
+  restartButton.addEventListener('click', async () => {
+  const result = await restartGame();
+
+  const container = document.getElementById('home-page');
+  const oldBoard = container.querySelector('.board');
+  if (oldBoard) container.removeChild(oldBoard);
+
+  const newBoard = Board(result.data.board, showCell);
+  container.appendChild(newBoard);
+
+});
+
+  container.appendChild(restartButton);
+
 
   const cells = getBoard();
   cells.then((data) => {
