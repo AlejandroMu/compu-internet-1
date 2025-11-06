@@ -1,6 +1,8 @@
 package co.icesi.buscaminas.model;
 
-public class Cell {
+import java.io.Serializable;
+
+public class Cell implements Serializable{
 
     private boolean isLandMine;
     private int value;

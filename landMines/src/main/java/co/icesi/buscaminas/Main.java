@@ -1,10 +1,10 @@
 package co.icesi.buscaminas;
 
-import co.icesi.buscaminas.controllers.TCPController;
+import java.util.Scanner;
+
+import co.icesi.buscaminas.controllers.ICEController;
 import co.icesi.buscaminas.model.BoardGame;
 import co.icesi.buscaminas.services.ServicesImpl;
-
-import java.util.Scanner;
 
 public class Main {
 
@@ -12,8 +12,11 @@ public class Main {
     {
         ServicesImpl serv = new ServicesImpl();
         new Thread(() -> apply(serv.getGame())).start();
-        TCPController controller = new TCPController(serv);
-        controller.startService();
+        // TCPController controller = new TCPController(serv);
+        // controller.startService();
+
+        ICEController iceController = new ICEController();
+        iceController.init(serv, args);
     }
     public static void apply(BoardGame bg) {
 

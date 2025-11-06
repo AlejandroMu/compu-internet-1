@@ -1,14 +1,16 @@
 import Board from '../components/Board.js';
+import { getBoardDelegate } from '../services/iceDelegate.js';
 // import axios from "axios";
 
 const getBoard = async () => {
-  let data = await fetch('http://localhost:5000/board', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  return data.json();
+  // let data = await fetch('http://localhost:5000/board', {
+  //   method: 'GET',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // });
+  
+  return await getBoardDelegate();
 };
 
 const restartGame = async () => {
@@ -84,7 +86,7 @@ function Game() {
 
   const cells = getBoard();
   cells.then((data) => {
-    const board = Board(data.data.board, showCell);
+    const board = Board(data, showCell);
     container.appendChild(board);
   });
 
